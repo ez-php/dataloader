@@ -10,7 +10,7 @@
       "email": "andreas.uretschnig@gmail.com"
     }
   ],
-  "keywords": ["dataloader", "batching", "n+1", "memoization", "php", "ez-php"],
+  "keywords": ["dataloader", "batching", "n-plus-1", "memoization", "php", "ez-php"],
   "homepage": "https://github.com/ez-php/dataloader",
   "support": {
     "issues": "https://github.com/ez-php/dataloader/issues",
