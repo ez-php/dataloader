@@ -1,6 +1,6 @@
 {
   "name": "ez-php/dataloader",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Generic keyed-batch loading and per-key memoization primitive for solving N+1 access patterns",
   "type": "library",
   "license": "MIT",
