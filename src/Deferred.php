@@ -55,6 +55,9 @@ final class Deferred
         $this->error = $error;
     }
 
+    /**
+     * Whether a result (or failure) has been recorded for this deferred.
+     */
     public function isResolved(): bool
     {
         return $this->resolved;

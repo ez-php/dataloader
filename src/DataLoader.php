@@ -109,6 +109,9 @@ final class DataLoader
         return $this;
     }
 
+    /**
+     * Drop the memoized result for a single key.
+     */
     public function clear(int|string $key): static
     {
         unset($this->cache[$key]);
@@ -116,6 +119,9 @@ final class DataLoader
         return $this;
     }
 
+    /**
+     * Drop every memoized result.
+     */
     public function clearAll(): static
     {
         $this->cache = [];
