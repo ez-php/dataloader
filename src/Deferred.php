@@ -21,6 +21,11 @@ final class Deferred
 
     private ?Throwable $error = null;
 
+    /**
+     * Deferred Constructor
+     *
+     * @param DataLoader|null $owner
+     */
     public function __construct(private readonly ?DataLoader $owner = null)
     {
     }
@@ -65,6 +70,8 @@ final class Deferred
 
     /**
      * Return the resolved value, dispatching the owning loader first if needed.
+     *
+     * @phpstan-impure
      */
     public function get(): mixed
     {

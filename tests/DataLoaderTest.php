@@ -60,9 +60,10 @@ final class DataLoaderTest extends TestCase
             return array_combine($keys, $keys);
         });
 
-        self::assertSame('a', $loader->load('a')->get());
-        self::assertSame('a', $loader->load('a')->get());
+        $first = $loader->load('a')->get();
+        $second = $loader->load('a')->get();
 
+        self::assertSame(['a', 'a'], [$first, $second]);
         self::assertSame(1, $callCount);
     }
 
@@ -122,11 +123,13 @@ final class DataLoaderTest extends TestCase
     {
         $loader = new DataLoader(static fn (array $keys): array => array_combine($keys, $keys));
 
-        self::assertSame('a', $loader->load('a')->get());
+        $beforePrime = $loader->load('a')->get();
 
         $loader->prime('a', 'should-not-apply');
 
-        self::assertSame('a', $loader->load('a')->get());
+        $afterPrime = $loader->load('a')->get();
+
+        self::assertSame(['a', 'a'], [$beforePrime, $afterPrime]);
     }
 
     public function testClearRemovesASingleCachedKey(): void

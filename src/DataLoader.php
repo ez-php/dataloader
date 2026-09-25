@@ -40,6 +40,8 @@ final class DataLoader
 
     /**
      * Queue a key for the next dispatch, or return the cached/pending Deferred for it.
+     *
+     * @phpstan-impure
      */
     public function load(int|string $key): Deferred
     {

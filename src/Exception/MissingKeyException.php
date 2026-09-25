@@ -13,6 +13,11 @@ use RuntimeException;
  */
 final class MissingKeyException extends RuntimeException
 {
+    /**
+     * MissingKeyException Constructor
+     *
+     * @param string|int $key
+     */
     public function __construct(int|string $key)
     {
         parent::__construct(sprintf('Batch load function did not return a value for key "%s".', $key));
