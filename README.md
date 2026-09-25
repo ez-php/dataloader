@@ -10,12 +10,16 @@ template loops — not tied to any particular resolver layer.
 ## Usage
 
 ```php
+use EzPhp\Contracts\DatabaseInterface;
 use EzPhp\DataLoader\DataLoader;
 
-$userLoader = new DataLoader(function (array $ids): array {
-    // one query for every id requested since the last dispatch
-    return Db::query('SELECT * FROM users WHERE id IN (?)', [$ids])
-        ->keyBy('id');
+/** @var DatabaseInterface $db e.g. injected into the class that builds the loader */
+$userLoader = new DataLoader(function (array $ids) use ($db): array {
+    // one query for every id requested since the last dispatch — one placeholder per id
+    $placeholders = implode(', ', array_fill(0, count($ids), '?'));
+    $rows = $db->query("SELECT * FROM users WHERE id IN ($placeholders)", array_values($ids));
+
+    return array_column($rows, null, 'id'); // keyed by id, as the contract below requires
 });
 
 $a = $userLoader->load(1);
